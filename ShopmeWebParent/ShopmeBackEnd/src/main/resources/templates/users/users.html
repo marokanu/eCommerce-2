@@ -108,9 +108,9 @@
 
 
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-        <form id="userForm" name="userForm"  style="max-width: 700px; margin: 0 auto"
+        <form id="userForm" name="userForm" style="max-width: 700px; margin: 0 auto"
               th:object="${user}">
-        <div class="modal-dialog">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">New User</h1>
@@ -121,47 +121,47 @@
 
                         <div class="border border-secondary rounded p-3">
 
-                            <input type="hidden"  th:field="*{id}" />
+                            <input type="hidden" th:field="*{id}" />
 
-                            <div class="form-group row" >
-                                <label for="email" class="col-sm-4 col-form-label">E-mail:</label>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">E-mail:</label>
                                 <div class="col-sm-8">
-                                    <input type="email" class="form-control" id="email" th:field="*{email}" required minlength="8" maxlength="128"  />
+                                    <input type="email" class="form-control" th:field="*{email}" required minlength="8" maxlength="128"  />
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="firstName" class="col-sm-4 col-form-label">First Name:</label>
+                                <label class="col-sm-4 col-form-label">First Name:</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="firstName"  th:field="*{firstName}" required minlength="2" maxlength="45"  />
+                                    <input type="text" class="form-control" th:field="*{firstName}" required minlength="2" maxlength="45"  />
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="lastName" class="col-sm-4 col-form-label">Last Name:</label>
+                                <label class="col-sm-4 col-form-label">Last Name:</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="lastName" th:field="*{lastName}" required minlength="2" maxlength="45"  />
+                                    <input type="text" class="form-control" th:field="*{lastName}" required minlength="2" maxlength="45"  />
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-sm-4 col-form-label">Password:</label>
+                                <label class="col-sm-4 col-form-label">Password:</label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="password" th:field="*{password}" required minlength="8" maxlength="20"  />
+                                    <input type="password" class="form-control" th:field="*{password}" required minlength="8" maxlength="20"  />
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="roles" class="col-sm-4 col-form-label">Roles:</label>
+                                <label class="col-sm-4 col-form-label">Roles:</label>
                                 <div class="col-sm-8">
                                     <th:block th:each="role : ${listRoles}">
-                                        <input type="checkbox" id="roles" th:field="*{roles}"
-                                               th:text="${role.name}"
-                                               th:value="${role.id}"
-                                               class="m-2"
-                                        />
-                                        - <small>[[${role.description}]]</small>
-                                        <br/>
+
+                                      <input type="checkbox" th:field="*{roles}"
+                                             th:value="${role.id}"
+                                             th:name="${role.name}"
+                                             class="m-2"/>
+                                        <label th:for="${role.id}" th:text="${role.name}"></label>
+
                                     </th:block>
                                 </div>
                             </div>
@@ -175,9 +175,9 @@
 
 <!--                            <div class="text-center">-->
 <!--                                <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--                                <input type="button" value="Cancel" class="btn btn-secondary" id="buttonCancel" />-->
+<!--                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
 <!--                            </div>-->
-<!--                        </div>-->
+                        </div>
 
                 </div>
                 <div class="modal-footer">
@@ -185,6 +185,7 @@
                     <button type="button" class="btn btn-primary" id="btn-save">Save</button>
                 </div>
             </div>
+        </div>
         </div>
         </form>
     </div>

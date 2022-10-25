@@ -28,8 +28,7 @@ public class UserService {
         return (List<Role>) roleRepository.findAll();
     }
 
-    public User save(User user) {
+    public void save(User user) {
           userRepository.save(user);
-        return user;
     }
 }

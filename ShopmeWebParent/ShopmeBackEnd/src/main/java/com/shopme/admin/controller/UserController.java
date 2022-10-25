@@ -21,17 +21,15 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public String listAll() {
+    public String listAll(Model model) {
 
-//        List<Role> listRoles = userService.listRoles();
-//
-//        User user = new User();
-//        user.setEnabled(true);
-//
-//        List<User> listUsers = userService.listAll();
-//        model.addAttribute("listUsers", listUsers);
-//        model.addAttribute("user", user);
-//        model.addAttribute("listRoles", listRoles);
+        List<Role> listRoles = userService.listRoles();
+
+        User user = new User();
+        user.setEnabled(true);
+
+        model.addAttribute("user", user);
+        model.addAttribute("listRoles", listRoles);
 
         return "users/users";
     }

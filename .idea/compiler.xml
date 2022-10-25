@@ -7,9 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+      </profile>
+      <profile name="Disabled">
         <module name="ShopmeCommon" />
-        <module name="ShopmeBackEnd" />
+        <module name="ShopmeWebParent" />
         <module name="ShopmeFrontEnd" />
+        <module name="ShopmeBackEnd" />
+        <module name="ShopmeProject" />
       </profile>
     </annotationProcessing>
   </component>

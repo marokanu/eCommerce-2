@@ -2,7 +2,7 @@ package com.shopme.common.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,17 +30,17 @@ public class User implements Serializable {
 
     private boolean enabled;
 
-    @ManyToMany
+
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles;
 
 
     public User() {
-
     }
 
     public User(String email, String password, String firstName, String lastName) {

@@ -1,10 +1,11 @@
 package com.shopme.common.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,25 +13,6 @@ public class Role {
 
     @Column(length = 40, nullable = false, unique = true)
     private String name;
-
-    @Column(length = 150, nullable = false)
-    private String description;
-
-    public Role() {
-    }
-
-    public Role(Integer id) {
-        this.id = id;
-    }
-
-    public Role(String name) {
-        this.name = name;
-    }
-
-    public Role(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 
     public Integer getId() {
         return id;
@@ -48,15 +30,8 @@ public class Role {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
+        @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -76,7 +51,6 @@ public class Role {
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + name.hashCode();
-        result = 31 * result + description.hashCode();
         return result;
     }
 

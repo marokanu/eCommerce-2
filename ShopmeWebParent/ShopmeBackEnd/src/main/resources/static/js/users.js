@@ -1,16 +1,17 @@
-let baseUrl = window.location.origin+"/ShopmeAdmin/users";
+let baseUrl = window.location.origin+"/ShopmeAdmin";
 
 $(document).ready(function () {
     getUsers();
     $('#btn-save').click(function (e) {
         saveUser();
-    })
+    });
+});
 
-})
+
 
 function getUsers() {
     $.ajax({
-        url: baseUrl + "/list",
+        url: baseUrl + "/save",
         type: "GET",
         dataType: "json",
         success: function (data) {
@@ -28,8 +29,6 @@ function getUsers() {
                     '</td><td>' +
                     user.lastName +
                     '</td><td>' +
-                    user.firstName +
-                    '</td><td>' +
                     user.roles +
                     '</td><td>' +
                     user.enabled +
@@ -37,24 +36,39 @@ function getUsers() {
                     'Edit &nbsp; Delete' +
                     '</td>' + '</tr>'
                 );
-            });
+             })
         },
         error: function (error) {
             alert(error);
         }
-    });
+    })
 }
 
 
-function saveUser() {
-    let user = {};
 
-    user.id = $('#id').val();
+
+function saveUser() {
+
+    let user = {};
+    let roles1 = [];
+
+    $("input:checkbox[name=roles]:checked").each(function(){
+
+        let objRoles = {};
+
+        objRoles['id'] = $(this).val();
+        objRoles['name'] = $(this).attr('id');
+        roles1.push(objRoles);
+
+    });
+
+
+   // user.id = $('#id').val();
     user.email = $('#email').val();
     user.firstName = $('#firstName').val();
     user.lastName = $('#lastName').val();
     user.password = $('#password').val();
-    user.roles = $('#roles').val();
+    user.roles = roles1;
     user.enabled = $('#enabled').val();
 
     let userJSON = JSON.stringify(user);
@@ -73,3 +87,16 @@ function saveUser() {
         }
     })
 }
+
+// function get_selected_checkboxes_array(){
+//
+//     let roleArray=[];
+//
+//     $("input:checkbox[name=roles]:checked").each(function(){
+//         roleArray.push( $(this).val() );
+//     });
+//
+//
+//
+//     return roleArray;
+// }
